@@ -1,0 +1,18 @@
+        <a class="project-card reveal" href="/projects/<%= project.slug %>">
+          <div class="project-card-media">
+            <% if (project.images.length) { %>
+              <img src="<%= project.images[0] %>" alt="" loading="lazy">
+            <% } else { %>
+              <%= project.title.charAt(0) %>
+            <% } %>
+          </div>
+          <div class="project-card-body">
+            <h3><%= project.title %></h3>
+            <% if (project.summary) { %>
+              <p><%= project.summary %></p>
+            <% } %>
+            <% if (project.tech_stack.length) { %>
+              <p class="tech-stack"><%= project.tech_stack.join(' · ') %></p>
+            <% } %>
+          </div>
+        </a>

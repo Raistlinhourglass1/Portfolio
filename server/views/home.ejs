@@ -1,10 +1,59 @@
 <%- include('partials/head') %>
 <%- include('partials/nav') %>
-  <main class="container">
-    <section class="hero">
-      <h1>Hi, I'm <%= name %>.</h1>
-      <p>I build full-stack apps and games, from database-backed web systems to Unreal &amp; Unity projects. Take a look at what I've been working on.</p>
-      <a class="button" href="/projects">View Projects</a>
+  <main class="layer">
+    <section id="hero" class="hero">
+      <div class="container">
+        <h1 class="name"><%= name %></h1>
+        <p class="role-line">Full-stack &amp; game developer</p>
+        <p class="intro">
+          I build full-stack apps and games, from database-backed web systems to Unreal &amp; Unity
+          projects. Take a look at what I've been working on below.
+        </p>
+      </div>
+    </section>
+
+    <div class="divider" aria-hidden="true"></div>
+
+    <section id="projects" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Projects</h2>
+          <span class="count"><%= projects.length %> project<%= projects.length === 1 ? '' : 's' %></span>
+        </div>
+        <div class="project-grid">
+          <% projects.forEach(function(project) { %>
+            <%- include('partials/project-card', { project }) %>
+          <% }); %>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider" aria-hidden="true"></div>
+
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>About</h2>
+        </div>
+        <div class="about-content reveal">
+          <p>
+            I'm <%= name %>, a Computer Science student at the University of Houston (minoring in
+            Cybersecurity) with a background in leading small dev teams. I led the team behind
+            <a href="/projects/esoterra">Esoterra</a>, a two-semester Unreal Engine project that placed
+            1st both semesters, and the team behind <a href="/projects/the-odyssey">The Odyssey</a>, a
+            VR co-op escape room shipped to a web store, whose members had no prior game development
+            experience going in. I like building things end-to-end: gameplay systems, backend services,
+            and the databases underneath them.
+          </p>
+          <div class="contact-links">
+            <a href="mailto:<%= contact.email %>">Email →</a>
+            <a href="<%= contact.github.url %>" target="_blank" rel="noopener">GitHub →</a>
+            <a href="<%= contact.linkedin.url %>" target="_blank" rel="noopener">LinkedIn →</a>
+            <a href="/resume">Resume →</a>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 <%- include('partials/footer') %>
+<script src="/js/reveal.js" defer></script>

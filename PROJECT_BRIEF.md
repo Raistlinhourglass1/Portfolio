@@ -61,6 +61,19 @@ portfolio-site/
 4. Resume should be servable both as downloadable PDF and as an HTML-rendered version from the same underlying data
 5. Visual design pass — pick accent color + neutral palette, pick a CSS approach (Tailwind vs. a classless framework), design the project card/grid layout first since it's the highest-impact page
 
+## Site Structure (updated after the single-page redesign)
+
+Home (`/`) is now a single scrollable page with anchor-nav sections: Hero (name only,
+no "Hi, I'm" framing) → Projects (card grid) → About (bio + contact links). Reference:
+https://melisaunlu.github.io/index.html — adapted the *structural* pattern (fixed ambient
+gradient glow behind content, sticky anchor nav, scroll-reveal fade-ins, entries linking out
+to dedicated detail pages) in our own dark/forest-green palette and Space Grotesk heading
+font, not a literal reskin of that site's gothic/manuscript aesthetic.
+
+Resume stays its own page (`/resume`, linked in nav) rather than a home-page section — too
+much dense structured content plus a PDF download to compress well into one section.
+`/projects` and `/about` still work standalone as fallback routes (not primary nav targets).
+
 ## Deferred to Final Polish Pass
 
 Items intentionally saved for a dedicated polish pass at the end, after content/media for

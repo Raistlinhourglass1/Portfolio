@@ -21,20 +21,28 @@
   --accent-soft: rgba(52, 168, 101, 0.14);
   --accent-on: #06150d;      /* text color used on top of solid accent fills */
 
-  --max-width: 960px;
+  --max-width: 1080px;
   --radius: 8px;
+
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Space Grotesk", var(--font-body);
 }
 
 * {
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-body);
   color: var(--text);
   background: var(--bg);
   line-height: 1.6;
+  position: relative;
 }
 
 a {
@@ -47,7 +55,8 @@ a:hover {
 }
 
 h1, h2, h3 {
-  line-height: 1.25;
+  font-family: var(--font-display);
+  line-height: 1.2;
   letter-spacing: -0.01em;
 }
 
@@ -57,14 +66,54 @@ h1, h2, h3 {
   padding: 2rem 1.5rem;
 }
 
+/* Ambient background — a fixed, subtle forest-green glow behind every page,
+   consistent site-wide rather than just on the home hero. Structural idea
+   (fixed radial-gradient glow + vignette + grain, content promoted onto its
+   own stacking layer) adapted from a portfolio the user liked; palette and
+   everything else is ours. */
+
+.ambient-glow {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(640px 520px at 20% -8%, var(--accent-soft), transparent 70%),
+    radial-gradient(760px 620px at 85% 15%, rgba(52, 168, 101, 0.08), transparent 72%);
+}
+
+.ambient-vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(120% 100% at 50% 30%, transparent 55%, rgba(0, 0, 0, 0.55) 100%);
+}
+
+.ambient-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.layer {
+  position: relative;
+  z-index: 3;
+}
+
 /* Header / nav */
 
 .site-header {
-  background: var(--bg-elevated);
+  background: rgba(20, 29, 25, 0.85);
+  backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--border);
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 40;
 }
 
 .site-nav {
@@ -77,8 +126,9 @@ h1, h2, h3 {
 }
 
 .site-nav .brand {
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
   text-decoration: none;
   color: var(--text);
 }
@@ -109,18 +159,127 @@ h1, h2, h3 {
 /* Hero */
 
 .hero {
-  padding: 3rem 0 2rem;
+  min-height: 82vh;
+  display: flex;
+  align-items: center;
+  padding: 4rem 0;
 }
 
-.hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 0.75rem;
+.hero .name {
+  font-size: clamp(2.75rem, 8vw, 5.5rem);
+  line-height: 1.02;
+  margin: 0 0 0.75rem;
 }
 
-.hero p {
+.hero .role-line {
+  font-size: 1.25rem;
+  color: var(--accent-strong);
+  margin: 0 0 1.25rem;
+}
+
+.hero .intro {
   color: var(--text-muted);
   font-size: 1.1rem;
+  max-width: 38rem;
+  margin: 0;
+}
+
+/* A thin gradient rule separating sections down the page — quiet but gives
+   the long scroll some rhythm instead of hard section boundaries. */
+.divider {
+  height: 1px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  background: linear-gradient(to right, transparent, var(--border-strong) 20%, var(--border-strong) 80%, transparent);
+}
+
+/* Sections (home page) */
+
+.section {
+  padding: 5rem 0;
+  scroll-margin-top: 5.5rem;
+}
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.section-head h2 {
+  font-size: 1.75rem;
+  margin: 0;
+  color: var(--accent-strong);
+}
+
+.section-head .count {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.about-content {
   max-width: 42rem;
+}
+
+.about-content p {
+  font-size: 1.1rem;
+  margin: 0 0 1.75rem;
+}
+
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.75rem;
+}
+
+.contact-links a {
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  color: var(--accent-strong);
+  border-bottom: 1px solid transparent;
+  padding-bottom: 0.2rem;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.contact-links a:hover {
+  border-color: var(--accent-strong);
+}
+
+/* Scroll-reveal: sections fade/lift into place as they enter the viewport
+   (see public/js/reveal.js). Scoped to `.js` (set by an inline script in
+   <head>, before paint) so content stays fully visible by default and only
+   gets hidden-then-revealed once JS has actually confirmed it can run the
+   IntersectionObserver that un-hides it — no risk of permanently invisible
+   content if the script fails to load. */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.js .reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 /* Buttons */
@@ -230,7 +389,7 @@ h1.has-logo {
   padding: 1.25rem;
 }
 
-.project-card h2 {
+.project-card h3 {
   margin: 0;
   font-size: 1.1rem;
 }
@@ -367,6 +526,8 @@ h1.has-logo {
 }
 
 .site-footer {
+  position: relative;
+  z-index: 3;
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 2rem 1.5rem;
@@ -375,10 +536,11 @@ h1.has-logo {
   border-top: 1px solid var(--border);
 }
 
-/* Used by the /resume/download route: Puppeteer prints the live /resume
-   page with the 'print' media type. A resume is meant to be read on paper
-   or in a viewer with a plain white background regardless of the site's
-   dark theme, so print output forces the light palette back on. */
+/* Not used by /resume/download (that route serves a pre-made static PDF) —
+   this only matters if someone manually prints the /resume page from their
+   own browser. A resume is meant to be read on paper or in a viewer with a
+   plain white background regardless of the site's dark theme, so print
+   output forces the light palette back on. */
 @media print {
   :root {
     --bg: #ffffff;
@@ -391,7 +553,10 @@ h1.has-logo {
 
   .site-header,
   .site-footer,
-  .resume-header .button {
+  .resume-header .button,
+  .ambient-glow,
+  .ambient-vignette,
+  .ambient-grain {
     display: none;
   }
 

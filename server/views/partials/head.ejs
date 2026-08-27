@@ -2,8 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <!-- Marks JS as available before paint, so CSS can scope the scroll-reveal
+       hide/fade to '.js .reveal' only — without this, .reveal content would
+       stay invisible forever if reveal.js ever failed to load. -->
+  <script>document.documentElement.classList.add('js');</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= title %> · Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+  <div class="ambient-glow" aria-hidden="true"></div>
+  <div class="ambient-vignette" aria-hidden="true"></div>
+  <div class="ambient-grain" aria-hidden="true"></div>

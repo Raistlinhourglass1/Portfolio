@@ -1,11 +1,10 @@
   <header class="site-header">
     <nav class="site-nav">
-      <a class="brand" href="/">Portfolio</a>
+      <a class="brand" href="/">Justin Hendrix</a>
       <ul>
-        <li><a href="/" class="<%= currentPath === '/' ? 'active' : '' %>">Home</a></li>
-        <li><a href="/projects" class="<%= currentPath.startsWith('/projects') ? 'active' : '' %>">Projects</a></li>
+        <li><a href="<%= currentPath === '/' ? '#projects' : '/#projects' %>">Projects</a></li>
         <li><a href="/resume" class="<%= currentPath.startsWith('/resume') ? 'active' : '' %>">Resume</a></li>
-        <li><a href="/about" class="<%= currentPath.startsWith('/about') ? 'active' : '' %>">About / Contact</a></li>
+        <li><a href="<%= currentPath === '/' ? '#about' : '/#about' %>">About</a></li>
       </ul>
     </nav>
   </header>
