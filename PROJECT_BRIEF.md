@@ -46,8 +46,8 @@ portfolio-site/
 3. **The Odyssey**
    - Role: Team lead. VR co-op escape room built in **Unity**. Team of 4, none of whom had prior game development experience. No pre-made assets, fully custom code and level design. Features an in-game lobby/multiplayer join flow. Shipped and posted to a web store (real distribution, not just a class demo). Custom puzzles requiring real physical player movement and 2-player cooperation (e.g., blacklight/flashlight puzzles requiring coordinated input from both players).
 
-4. **Gas Price Predictor** (AI class, University of Houston)
-   - Custom neural network predicting gas prices one week out. **89% accuracy.** Input features included real-world events like wars, new legislation, and political developments as predictors of price movement.
+4. **Gas Price Predictor** (AI class, University of Houston, "USOIL Price Prediction," Group 12)
+   - 4-person team project comparing LSTM, GRU, and Random Forest models to forecast US oil (USOIL) prices, plus a separate Random Forest model predicting weekly Houston gas price changes. Role: LSTM model, data collection, research (teammates to be credited later). No headline accuracy percentage exists in the actual project materials (the earlier "89% accuracy" claim wasn't backed by the slides and was dropped); real results are GRU outperforming LSTM on MAE/RMSE, and both models struggling with sudden price spikes driven by real-world events outside the dataset.
 
 **Not yet ready to feature** (in progress as of Aug 2026, exclude from portfolio for now):
 - Data Science class project (data manipulation, to be shown as its own site/output)

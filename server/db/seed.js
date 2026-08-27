@@ -102,14 +102,25 @@ const projects = [
   {
     slug: 'gas-price-predictor',
     title: 'Gas Price Predictor',
-    summary: 'Custom neural network predicting weekly gas prices with 89% accuracy.',
+    summary: 'Comparing LSTM, GRU, and Random Forest models to forecast US oil and gas prices.',
     description:
-      'Built for an AI class at the University of Houston. A custom neural network predicts gas ' +
-      'prices one week out with 89% accuracy, using real-world events such as wars, new legislation, ' +
-      'and political developments as predictors of price movement.',
-    role: 'Developer',
-    tech_stack: ['Python', 'Neural Networks'],
-    images: [],
+      'Built for an AI class at the University of Houston, as part of a 4-person team comparing ' +
+      'different machine learning approaches to price forecasting. I built one of the project’s ' +
+      'LSTM models and contributed to data collection and research. The team trained and compared ' +
+      'LSTM, GRU, and Random Forest models using technical indicators (moving averages, RSI, ' +
+      'Bollinger Bands, MACD) derived from historical USOIL prices, plus a separate Random Forest ' +
+      'model predicting weekly Houston gas price changes from crude and regional market data. GRU ' +
+      'outperformed LSTM on this dataset (lower error), though both models struggled to anticipate ' +
+      'sudden price spikes driven by real-world events outside the dataset, such as wars and policy ' +
+      'shifts, a key finding of the project.',
+    role: 'Contributor (LSTM Model)',
+    tech_stack: ['Python', 'TensorFlow/Keras', 'scikit-learn', 'pandas'],
+    images: [
+      '/images/gas-price-predictor/usoil-monthly-prices.jpg',
+      '/images/gas-price-predictor/price-predictions.jpg',
+      '/images/gas-price-predictor/lstm-gru-dashboard.jpg',
+      '/images/gas-price-predictor/random-forest-results.jpg',
+    ],
     video_url: null,
     links: {},
     featured: 0,
