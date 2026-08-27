@@ -29,13 +29,6 @@ portfolio-site/
 - **The Odyssey** — VR co-op escape room, Unity, shipped to a web store
 - **Gas Price Predictor** — Neural network, 89% accuracy (AI class, UH)
 
-## Setup (local dev)
-
-```bash
-npm install
-npm run dev
-```
-
 ## Status
 
 🚧 In active development — Fall 2026
