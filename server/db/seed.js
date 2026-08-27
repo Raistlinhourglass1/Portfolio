@@ -85,17 +85,28 @@ const projects = [
   {
     slug: 'library-management-system',
     title: 'Library Management System',
-    summary: 'Full-stack Node.js + MySQL system with role-based access and barcode scanner input.',
+    summary: 'Full-stack React + Node.js + MySQL library system with role-based access and barcode scanner input.',
     description:
-      'Built with a team of 4 for a Database class. Full-stack Node.js + MySQL application with ' +
-      'staff/student role-based access and admin features for managing books and media. Supports ' +
-      'physical barcode scanner input for adding books, and a custom login system tied to a ' +
-      'self-hosted database (hosting was outsourced to AWS for this class project).',
+      'Built with a team of 4 for a Database class. Full-stack React + Node.js + MySQL application ' +
+      '("The Learning Loft") with staff/student role-based access and admin features for managing ' +
+      'books, audiobooks, ebooks, and periodicals. Supports physical barcode scanner input for ' +
+      'adding books, room and device reservations, and a custom JWT-based login system tied to a ' +
+      'self-hosted database (hosting was outsourced to AWS for this class project). The original ' +
+      'hosted deployment is no longer live; screenshots are from running the app locally against ' +
+      'the source in the linked repos.',
     role: 'Full-stack Developer',
-    tech_stack: ['Node.js', 'MySQL', 'Express'],
-    images: [],
+    tech_stack: ['React', 'Node.js', 'MySQL', 'Express'],
+    images: [
+      '/images/library-management-system/home.jpg',
+      '/images/library-management-system/catalog.jpg',
+      '/images/library-management-system/book-entry.jpg',
+      '/images/library-management-system/signin.jpg',
+    ],
     video_url: null,
-    links: {},
+    links: {
+      'Frontend Repo': 'https://github.com/Raistlinhourglass1/LibraryDBfrontend',
+      'Backend Repo': 'https://github.com/Raistlinhourglass1/LibraryDBbackend',
+    },
     featured: 0,
     sort_order: 3,
   },
