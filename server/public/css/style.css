@@ -179,3 +179,27 @@ body {
   color: var(--text-muted);
   font-size: 0.9rem;
 }
+
+/* Used by the /resume/download route: Puppeteer prints the live /resume
+   page with the 'print' media type, so these rules produce the PDF output
+   without needing a separate PDF template. */
+@media print {
+  .site-header,
+  .site-footer,
+  .resume-header .button {
+    display: none;
+  }
+
+  body {
+    font-size: 11pt;
+  }
+
+  .container {
+    max-width: none;
+    padding: 0;
+  }
+
+  .resume-entry {
+    break-inside: avoid;
+  }
+}
