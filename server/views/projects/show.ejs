@@ -9,6 +9,21 @@
     <% if (project.tech_stack.length) { %>
       <p class="tech-stack"><%= project.tech_stack.join(' · ') %></p>
     <% } %>
+
+    <% if (project.video_url) { %>
+      <div class="project-video">
+        <video controls preload="metadata" src="<%= project.video_url %>"></video>
+      </div>
+    <% } %>
+
+    <% if (project.images.length) { %>
+      <div class="project-gallery">
+        <% project.images.forEach(function(src) { %>
+          <img src="<%= src %>" alt="<%= project.title %> screenshot" loading="lazy">
+        <% }); %>
+      </div>
+    <% } %>
+
     <div class="project-description">
       <p><%= project.description %></p>
     </div>
