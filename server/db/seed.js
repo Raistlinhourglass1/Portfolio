@@ -12,7 +12,8 @@ const projects = [
     summary: 'Flagship project — team-led Unreal Engine RPG, 1st place two semesters running.',
     description:
       'Team lead across two semesters (Fall 2025 + Spring 2026) with two different 4-person teams. ' +
-      'Built in Unreal Engine with zero purchased or pre-made assets. Placed 1st both semesters. ' +
+      'Built in Unreal Engine with light use of pre-made assets — limited to the building-block ' +
+      'pieces used for the ruins, with everything else built custom. Placed 1st both semesters. ' +
       'Features a deep combat system with multiple weapons and enemies, custom fighting animations, ' +
       'an AI decision tree for reactive enemy behavior, an inventory system, crafting and resource ' +
       'gathering (rocks, trees), a custom weather particle system, a magic system, and a large ' +
@@ -27,6 +28,27 @@ const projects = [
       '/images/esoterra/inventory-crafting.jpg',
     ],
     video_url: '/videos/esoterra.mp4',
+    bts_images: [
+      '/images/esoterra/behind-the-scenes/blueprint-showcase.jpg',
+      '/images/esoterra/behind-the-scenes/ai-perception.jpg',
+      '/images/esoterra/behind-the-scenes/enemy-ai.jpg',
+      '/images/esoterra/behind-the-scenes/highlighted-item-focus.jpg',
+      '/images/esoterra/behind-the-scenes/interactable-inventory-system.jpg',
+      '/images/esoterra/behind-the-scenes/quest-format.jpg',
+      '/images/esoterra/behind-the-scenes/first-settlement-editor-view.jpg',
+      '/images/esoterra/behind-the-scenes/cultist-1.jpg',
+      '/images/esoterra/behind-the-scenes/cultist-1-pose.jpg',
+      '/images/esoterra/behind-the-scenes/cultist-2.jpg',
+      '/images/esoterra/behind-the-scenes/cultist-2-back.jpg',
+      '/images/esoterra/behind-the-scenes/green-npc.jpg',
+      '/images/esoterra/behind-the-scenes/ruin-3.jpg',
+    ],
+    bts_videos: [
+      '/videos/behind-the-scenes/esoterra/ai-pathfinding.mp4',
+      '/videos/behind-the-scenes/esoterra/debug-menu-test.mp4',
+      '/videos/behind-the-scenes/esoterra/selective-combat-test.mp4',
+      '/videos/behind-the-scenes/esoterra/island-pan.mp4',
+    ],
     links: {},
     featured: 1,
     sort_order: 1,
@@ -84,8 +106,8 @@ const projects = [
 ];
 
 const upsert = db.prepare(`
-  INSERT INTO projects (slug, title, summary, description, role, tech_stack, images, video_url, links, featured, sort_order, updated_at)
-  VALUES (@slug, @title, @summary, @description, @role, @tech_stack, @images, @video_url, @links, @featured, @sort_order, datetime('now'))
+  INSERT INTO projects (slug, title, summary, description, role, tech_stack, images, video_url, bts_images, bts_videos, links, featured, sort_order, updated_at)
+  VALUES (@slug, @title, @summary, @description, @role, @tech_stack, @images, @video_url, @bts_images, @bts_videos, @links, @featured, @sort_order, datetime('now'))
   ON CONFLICT(slug) DO UPDATE SET
     title = excluded.title,
     summary = excluded.summary,
@@ -94,6 +116,8 @@ const upsert = db.prepare(`
     tech_stack = excluded.tech_stack,
     images = excluded.images,
     video_url = excluded.video_url,
+    bts_images = excluded.bts_images,
+    bts_videos = excluded.bts_videos,
     links = excluded.links,
     featured = excluded.featured,
     sort_order = excluded.sort_order,
@@ -106,6 +130,8 @@ const seedAll = db.transaction((rows) => {
       ...p,
       tech_stack: JSON.stringify(p.tech_stack),
       images: JSON.stringify(p.images),
+      bts_images: JSON.stringify(p.bts_images || []),
+      bts_videos: JSON.stringify(p.bts_videos || []),
       links: JSON.stringify(p.links),
     });
   }

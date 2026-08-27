@@ -310,6 +310,62 @@ h1.has-logo {
   margin-bottom: 0.4rem;
 }
 
+/* Behind the Scenes (project detail pages) */
+
+.bts {
+  margin-top: 2.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-elevated);
+  padding: 1rem 1.25rem;
+}
+
+.bts summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--accent-strong);
+  list-style: none;
+}
+
+.bts summary::-webkit-details-marker {
+  display: none;
+}
+
+.bts summary::before {
+  content: '▸';
+  display: inline-block;
+  margin-right: 0.5rem;
+  transition: transform 0.15s ease;
+}
+
+.bts[open] summary::before {
+  transform: rotate(90deg);
+}
+
+.bts-intro {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  margin: 0.75rem 0 1.25rem;
+}
+
+.bts-video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.bts-video-grid video {
+  width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: #000;
+}
+
+.bts-gallery img {
+  aspect-ratio: 4 / 3;
+}
+
 .site-footer {
   max-width: var(--max-width);
   margin: 0 auto;

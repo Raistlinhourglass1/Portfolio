@@ -12,6 +12,10 @@ CREATE TABLE IF NOT EXISTS projects (
   tech_stack   TEXT DEFAULT '[]',          -- JSON array of strings, e.g. ["Unreal Engine", "C++"]
   images       TEXT DEFAULT '[]',          -- JSON array of image paths/URLs
   video_url    TEXT,                       -- optional demo video URL
+  bts_images   TEXT DEFAULT '[]',          -- JSON array of "behind the scenes" image paths
+                                            -- (dev/debug captures, WIP shots) — shown in a
+                                            -- collapsed section, opt-in for the visitor
+  bts_videos   TEXT DEFAULT '[]',          -- JSON array of "behind the scenes" video paths
   links        TEXT DEFAULT '{}',          -- JSON object, e.g. {"github": "...", "live": "..."}
   featured     INTEGER NOT NULL DEFAULT 0, -- 0/1 — show in the highlighted/top section
   sort_order   INTEGER NOT NULL DEFAULT 0, -- lower = earlier in listings

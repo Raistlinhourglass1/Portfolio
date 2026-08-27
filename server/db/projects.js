@@ -6,6 +6,8 @@ function parseRow(row) {
     ...row,
     tech_stack: JSON.parse(row.tech_stack || '[]'),
     images: JSON.parse(row.images || '[]'),
+    bts_images: JSON.parse(row.bts_images || '[]'),
+    bts_videos: JSON.parse(row.bts_videos || '[]'),
     links: JSON.parse(row.links || '{}'),
     featured: !!row.featured,
   };

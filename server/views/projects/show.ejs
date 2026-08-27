@@ -40,5 +40,29 @@
         <% }); %>
       </ul>
     <% } %>
+
+    <% if (project.bts_images.length || project.bts_videos.length) { %>
+      <details class="bts">
+        <summary>Behind the Scenes</summary>
+        <p class="bts-intro">
+          Development shots and test clips — AI debugging, character work, editor views,
+          and system tests along the way.
+        </p>
+        <% if (project.bts_videos.length) { %>
+          <div class="bts-video-grid">
+            <% project.bts_videos.forEach(function(src) { %>
+              <video controls preload="metadata" src="<%= src %>"></video>
+            <% }); %>
+          </div>
+        <% } %>
+        <% if (project.bts_images.length) { %>
+          <div class="project-gallery bts-gallery">
+            <% project.bts_images.forEach(function(src) { %>
+              <img src="<%= src %>" alt="<%= project.title %> behind-the-scenes shot" loading="lazy">
+            <% }); %>
+          </div>
+        <% } %>
+      </details>
+    <% } %>
   </main>
 <%- include('../partials/footer') %>
