@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+
+# Environment variables (secrets, DB paths, etc.)
+.env
+.env.local
+
+# Database files (don't commit actual data, just schema/migrations)
+*.sqlite
+*.sqlite3
+*.db
+*.sqlite-shm
+*.sqlite-wal
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+
+# Build output
+dist/
+build/
+
+# Large media (host separately on DAS, reference via path/URL instead)
+server/public/images/originals/
+server/public/videos/

@@ -1,0 +1,17 @@
+{
+  "name": "portfolio-site",
+  "version": "0.1.0",
+  "description": "Personal portfolio site showcasing college projects and resume",
+  "main": "server/index.js",
+  "scripts": {
+    "dev": "node --watch server/index.js",
+    "start": "node server/index.js",
+    "db:seed": "node server/db/seed.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "better-sqlite3": "^12.11.1",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2"
+  }
+}

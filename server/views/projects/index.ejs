@@ -1,0 +1,19 @@
+<%- include('../partials/head') %>
+<%- include('../partials/nav') %>
+  <main class="container">
+    <h1>Projects</h1>
+    <div class="project-grid">
+      <% projects.forEach(function(project) { %>
+        <a class="project-card" href="/projects/<%= project.slug %>">
+          <h2><%= project.title %></h2>
+          <% if (project.summary) { %>
+            <p><%= project.summary %></p>
+          <% } %>
+          <% if (project.tech_stack.length) { %>
+            <p class="tech-stack"><%= project.tech_stack.join(' · ') %></p>
+          <% } %>
+        </a>
+      <% }); %>
+    </div>
+  </main>
+<%- include('../partials/footer') %>
