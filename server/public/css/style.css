@@ -209,6 +209,15 @@ h1, h2, h3 {
   margin-top: 1.5rem;
 }
 
+h1.has-logo {
+  line-height: 0;
+}
+
+.project-logo {
+  max-width: 320px;
+  height: auto;
+}
+
 .project-gallery img {
   width: 100%;
   aspect-ratio: 16 / 9;

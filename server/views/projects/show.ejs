@@ -2,7 +2,13 @@
 <%- include('../partials/nav') %>
   <main class="container">
     <p><a href="/projects">&larr; Back to Projects</a></p>
-    <h1><%= project.title %></h1>
+    <h1<% if (logoUrl) { %> class="has-logo"<% } %>>
+      <% if (logoUrl) { %>
+        <img class="project-logo" src="<%= logoUrl %>" alt="<%= project.title %>">
+      <% } else { %>
+        <%= project.title %>
+      <% } %>
+    </h1>
     <% if (project.role) { %>
       <p class="project-role"><%= project.role %></p>
     <% } %>
