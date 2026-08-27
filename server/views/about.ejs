@@ -1,7 +1,21 @@
 <%- include('partials/head') %>
 <%- include('partials/nav') %>
   <main class="container">
-    <h1>About / Contact</h1>
-    <p>Placeholder bio content goes here.</p>
+    <h1>About</h1>
+    <p>
+      I'm <%= name %>, a Computer Science student at the University of Houston (minoring in
+      Cybersecurity) with a background in leading small dev teams — from a first-place VR/3D
+      game competition to <a href="/projects/esoterra">Esoterra</a>, a two-semester Unreal Engine
+      project I've led to 1st place both times. I like building things end-to-end: gameplay
+      systems, backend services, and the databases underneath them.
+    </p>
+
+    <h2>Contact</h2>
+    <ul class="contact-list">
+      <li><a href="mailto:<%= contact.email %>"><%= contact.email %></a></li>
+      <li><%= contact.phone %></li>
+      <li><a href="<%= contact.linkedin.url %>" target="_blank" rel="noopener"><%= contact.linkedin.label %></a></li>
+      <li><a href="<%= contact.github.url %>" target="_blank" rel="noopener"><%= contact.github.label %></a></li>
+    </ul>
   </main>
 <%- include('partials/footer') %>

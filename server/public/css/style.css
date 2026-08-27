@@ -115,6 +115,63 @@ body {
   margin-top: -0.5rem;
 }
 
+.resume-header {
+  margin-bottom: 2rem;
+}
+
+.resume-contact {
+  color: var(--text-muted);
+}
+
+.resume-section {
+  margin-bottom: 2rem;
+}
+
+.resume-section h2 {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.25rem;
+}
+
+.resume-entry {
+  margin-bottom: 1.25rem;
+}
+
+.resume-entry-heading,
+.resume-entry-subheading {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.resume-entry-subheading {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.resume-entry ul {
+  margin: 0.5rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.resume-skills {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.resume-skills li {
+  margin-bottom: 0.4rem;
+}
+
+.contact-list {
+  list-style: none;
+  padding: 0;
+}
+
+.contact-list li {
+  margin-bottom: 0.4rem;
+}
+
 .site-footer {
   max-width: var(--max-width);
   margin: 0 auto;

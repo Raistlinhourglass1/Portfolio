@@ -1,8 +1,81 @@
 <%- include('partials/head') %>
 <%- include('partials/nav') %>
-  <main class="container">
-    <h1>Resume</h1>
-    <p><a class="button" href="/resume/download">Download PDF</a></p>
-    <p>Placeholder HTML-rendered resume content goes here.</p>
+  <main class="container resume">
+    <div class="resume-header">
+      <h1><%= resume.name %></h1>
+      <p class="resume-contact">
+        <%= resume.contact.phone %> ·
+        <a href="mailto:<%= resume.contact.email %>"><%= resume.contact.email %></a> ·
+        <a href="<%= resume.contact.linkedin.url %>" target="_blank" rel="noopener"><%= resume.contact.linkedin.label %></a> ·
+        <a href="<%= resume.contact.github.url %>" target="_blank" rel="noopener"><%= resume.contact.github.label %></a>
+      </p>
+      <a class="button" href="/resume/download">Download PDF</a>
+    </div>
+
+    <section class="resume-section">
+      <h2>Education</h2>
+      <% resume.education.forEach(function(edu) { %>
+        <div class="resume-entry">
+          <div class="resume-entry-heading">
+            <strong><%= edu.school %></strong>
+            <span class="resume-entry-location"><%= edu.location %></span>
+          </div>
+          <div class="resume-entry-subheading">
+            <em><%= edu.degree %></em>
+            <span class="resume-entry-dates"><%= edu.dates %></span>
+          </div>
+        </div>
+      <% }); %>
+    </section>
+
+    <section class="resume-section">
+      <h2>Experience</h2>
+      <% resume.experience.forEach(function(job) { %>
+        <div class="resume-entry">
+          <div class="resume-entry-heading">
+            <strong><%= job.title %></strong>
+            <span class="resume-entry-dates"><%= job.dates %></span>
+          </div>
+          <div class="resume-entry-subheading">
+            <em><%= job.org %></em>
+            <span class="resume-entry-location"><%= job.location %></span>
+          </div>
+          <ul>
+            <% job.bullets.forEach(function(bullet) { %>
+              <li><%= bullet %></li>
+            <% }); %>
+          </ul>
+        </div>
+      <% }); %>
+    </section>
+
+    <section class="resume-section">
+      <h2>Projects</h2>
+      <% resume.projects.forEach(function(project) { %>
+        <div class="resume-entry">
+          <div class="resume-entry-heading">
+            <strong><%= project.title %></strong>
+            <span class="resume-entry-dates"><%= project.dates %></span>
+          </div>
+          <div class="resume-entry-subheading">
+            <em><%= project.tech %></em>
+          </div>
+          <ul>
+            <% project.bullets.forEach(function(bullet) { %>
+              <li><%= bullet %></li>
+            <% }); %>
+          </ul>
+        </div>
+      <% }); %>
+    </section>
+
+    <section class="resume-section">
+      <h2>Technical Skills</h2>
+      <ul class="resume-skills">
+        <% Object.entries(resume.skills).forEach(function([category, items]) { %>
+          <li><strong><%= category %>:</strong> <%= items.join(', ') %></li>
+        <% }); %>
+      </ul>
+    </section>
   </main>
 <%- include('partials/footer') %>
