@@ -39,12 +39,12 @@ portfolio-site/
 1. **Library Management System** (Database class)
    - Team of 4. Full-stack Node.js + MySQL. Staff/student role-based access. Admin features for managing books/media. Physical barcode scanner input for adding books. Custom login system tied to a self-hosted database (hosting was outsourced to AWS for this class project, unlike the portfolio site itself).
 
-2. **Esoterra** (flagship project — deserves the most detailed case study page)
-   - Role: Team lead. Two semesters (Fall 2025 + Spring 2026), two different 4-person teams. Built in **Unreal Engine**, light use of pre-made assets (limited to the building-block pieces used for the ruins — everything else custom). **1st place in both semesters.**
-   - Features: deep combat system with multiple weapons, enemies, custom fighting animations, AI decision tree for reactive enemy behavior; inventory system; crafting and resource gathering (rocks, trees); custom weather particle system; magic system; large open-world island for exploration; narrative around uncovering the fate of a long-dead civilization.
+2. **Esoterra** (flagship project, deserves the most detailed case study page)
+   - Role: Team lead. Two semesters (Fall 2025 + Spring 2026), two different 4-person teams. Built in **Unreal Engine**, light use of pre-made assets (limited to the building-block pieces used for the ruins, everything else custom). **1st place in both semesters.**
+   - Features: deep combat system with multiple weapons, enemies, custom fighting animations, AI decision tree for reactive enemy behavior; NPCs with a dialogue and quest system; inventory system; crafting and resource gathering (rocks, trees); custom weather particle system; magic system; large open-world island for exploration; narrative around uncovering the fate of a long-dead civilization.
 
 3. **The Odyssey**
-   - VR co-op escape room built in **Unity**. No pre-made assets — fully custom code and level design. Features an in-game lobby/multiplayer join flow. Shipped and posted to a web store (real distribution, not just a class demo). Custom puzzles requiring real physical player movement and 2-player cooperation (e.g., blacklight/flashlight puzzles requiring coordinated input from both players).
+   - Role: Team lead. VR co-op escape room built in **Unity**. Team of 4, none of whom had prior game development experience. No pre-made assets, fully custom code and level design. Features an in-game lobby/multiplayer join flow. Shipped and posted to a web store (real distribution, not just a class demo). Custom puzzles requiring real physical player movement and 2-player cooperation (e.g., blacklight/flashlight puzzles requiring coordinated input from both players).
 
 4. **Gas Price Predictor** (AI class, University of Houston)
    - Custom neural network predicting gas prices one week out. **89% accuracy.** Input features included real-world events like wars, new legislation, and political developments as predictors of price movement.

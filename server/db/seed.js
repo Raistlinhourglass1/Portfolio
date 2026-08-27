@@ -9,15 +9,16 @@ const projects = [
   {
     slug: 'esoterra',
     title: 'Esoterra',
-    summary: 'Flagship project — team-led Unreal Engine RPG, 1st place two semesters running.',
+    summary: 'Flagship project: a team-led Unreal Engine RPG that placed 1st two semesters running.',
     description:
       'Team lead across two semesters (Fall 2025 + Spring 2026) with two different 4-person teams. ' +
-      'Built in Unreal Engine with light use of pre-made assets — limited to the building-block ' +
+      'Built in Unreal Engine with light use of pre-made assets, limited to the building-block ' +
       'pieces used for the ruins, with everything else built custom. Placed 1st both semesters. ' +
       'Features a deep combat system with multiple weapons and enemies, custom fighting animations, ' +
-      'an AI decision tree for reactive enemy behavior, an inventory system, crafting and resource ' +
-      'gathering (rocks, trees), a custom weather particle system, a magic system, and a large ' +
-      'open-world island to explore. The narrative centers on uncovering the fate of a long-dead civilization.',
+      'an AI decision tree for reactive enemy behavior, NPCs with a dialogue and quest system, an ' +
+      'inventory system, crafting and resource gathering (rocks, trees), a custom weather particle ' +
+      'system, a magic system, and a large open-world island to explore. The narrative centers on ' +
+      'uncovering the fate of a long-dead civilization.',
     role: 'Team Lead',
     tech_stack: ['Unreal Engine', 'C++', 'Blueprints'],
     images: [
@@ -56,13 +57,14 @@ const projects = [
   {
     slug: 'the-odyssey',
     title: 'The Odyssey',
-    summary: 'VR co-op escape room built in Unity, shipped to a web store.',
+    summary: 'Team-led VR co-op escape room built in Unity, shipped to a web store.',
     description:
-      'A VR co-op escape room built in Unity with no pre-made assets — fully custom code and level ' +
-      'design. Features an in-game lobby/multiplayer join flow and shipped as a real release posted ' +
-      'to a web store, not just a class demo. Custom puzzles require real physical player movement and ' +
+      'Led a 4-person team, none of whom had prior game development experience, to build a VR ' +
+      'co-op escape room in Unity with no pre-made assets, fully custom code and level design. ' +
+      'Features an in-game lobby/multiplayer join flow and shipped as a real release posted to a ' +
+      'web store, not just a class demo. Custom puzzles require real physical player movement and ' +
       '2-player cooperation, such as blacklight/flashlight puzzles that need coordinated input from both players.',
-    role: 'Developer',
+    role: 'Team Lead',
     tech_stack: ['Unity', 'C#', 'VR'],
     images: [
       '/images/the-odyssey/level-1.jpg',
@@ -103,8 +105,8 @@ const projects = [
     summary: 'Custom neural network predicting weekly gas prices with 89% accuracy.',
     description:
       'Built for an AI class at the University of Houston. A custom neural network predicts gas ' +
-      'prices one week out with 89% accuracy, using real-world events — wars, new legislation, ' +
-      'political developments — as predictors of price movement.',
+      'prices one week out with 89% accuracy, using real-world events such as wars, new legislation, ' +
+      'and political developments as predictors of price movement.',
     role: 'Developer',
     tech_stack: ['Python', 'Neural Networks'],
     images: [],
