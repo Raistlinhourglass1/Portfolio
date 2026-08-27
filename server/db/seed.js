@@ -37,7 +37,6 @@ const projects = [
       '/images/esoterra/behind-the-scenes/interactable-inventory-system.jpg',
       '/images/esoterra/behind-the-scenes/quest-format.jpg',
       '/images/esoterra/behind-the-scenes/first-settlement-editor-view.jpg',
-      '/images/esoterra/behind-the-scenes/cultist-1.jpg',
       '/images/esoterra/behind-the-scenes/cultist-1-pose.jpg',
       '/images/esoterra/behind-the-scenes/cultist-2.jpg',
       '/images/esoterra/behind-the-scenes/cultist-2-back.jpg',
