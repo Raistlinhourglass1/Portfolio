@@ -61,6 +61,15 @@ portfolio-site/
 4. Resume should be servable both as downloadable PDF and as an HTML-rendered version from the same underlying data
 5. Visual design pass — pick accent color + neutral palette, pick a CSS approach (Tailwind vs. a classless framework), design the project card/grid layout first since it's the highest-impact page
 
+## Deferred to Final Polish Pass
+
+Items intentionally saved for a dedicated polish pass at the end, after content/media for
+all projects and deployment are done — cosmetic and independent of content, so doing them
+now risks rework as more pages get built out.
+
+- Custom cursor hover reactivity (beyond the existing card lift/glow, button hover, nav
+  underline states already in place from the visual design pass)
+
 ## Notes on Working Style
 
 - User is comfortable with backend/infra work but explicitly wants to keep it simple rather than over-engineered.
