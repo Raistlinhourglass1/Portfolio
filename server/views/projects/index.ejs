@@ -5,13 +5,16 @@
     <div class="project-grid">
       <% projects.forEach(function(project) { %>
         <a class="project-card" href="/projects/<%= project.slug %>">
-          <h2><%= project.title %></h2>
-          <% if (project.summary) { %>
-            <p><%= project.summary %></p>
-          <% } %>
-          <% if (project.tech_stack.length) { %>
-            <p class="tech-stack"><%= project.tech_stack.join(' · ') %></p>
-          <% } %>
+          <div class="project-card-media"><%= project.title.charAt(0) %></div>
+          <div class="project-card-body">
+            <h2><%= project.title %></h2>
+            <% if (project.summary) { %>
+              <p><%= project.summary %></p>
+            <% } %>
+            <% if (project.tech_stack.length) { %>
+              <p class="tech-stack"><%= project.tech_stack.join(' · ') %></p>
+            <% } %>
+          </div>
         </a>
       <% }); %>
     </div>

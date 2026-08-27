@@ -1,12 +1,28 @@
-/* Minimal scaffold styles — real design pass comes later per PROJECT_BRIEF.md */
+/* Design pass: dark theme, forest green accent, neutral grays.
+   One accent color + neutrals per PROJECT_BRIEF.md — no secondary hues. */
 
 :root {
-  --accent: #2b6cb0;
-  --text: #1a1a1a;
-  --text-muted: #555;
-  --bg: #ffffff;
-  --border: #e2e2e2;
+  /* Surfaces */
+  --bg: #0d1310;             /* page background — near-black, slight green cast */
+  --bg-elevated: #141d19;    /* nav, footer, cards */
+  --bg-elevated-2: #1b2620;  /* hover state on elevated surfaces */
+
+  /* Borders */
+  --border: #263029;
+  --border-strong: #34453b;
+
+  /* Text */
+  --text: #e9efe9;
+  --text-muted: #96a89d;
+
+  /* Accent — forest green */
+  --accent: #34a865;
+  --accent-strong: #4fd087;
+  --accent-soft: rgba(52, 168, 101, 0.14);
+  --accent-on: #06150d;      /* text color used on top of solid accent fills */
+
   --max-width: 960px;
+  --radius: 8px;
 }
 
 * {
@@ -18,7 +34,21 @@ body {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   color: var(--text);
   background: var(--bg);
-  line-height: 1.5;
+  line-height: 1.6;
+}
+
+a {
+  color: var(--accent-strong);
+}
+
+a:hover {
+  color: var(--accent-strong);
+  text-decoration-thickness: 2px;
+}
+
+h1, h2, h3 {
+  line-height: 1.25;
+  letter-spacing: -0.01em;
 }
 
 .container {
@@ -27,8 +57,14 @@ body {
   padding: 2rem 1.5rem;
 }
 
+/* Header / nav */
+
 .site-header {
+  background: var(--bg-elevated);
   border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .site-nav {
@@ -42,6 +78,7 @@ body {
 
 .site-nav .brand {
   font-weight: 700;
+  letter-spacing: -0.02em;
   text-decoration: none;
   color: var(--text);
 }
@@ -49,7 +86,7 @@ body {
 .site-nav ul {
   list-style: none;
   display: flex;
-  gap: 1.5rem;
+  gap: 1.75rem;
   margin: 0;
   padding: 0;
 }
@@ -57,52 +94,107 @@ body {
 .site-nav a {
   text-decoration: none;
   color: var(--text-muted);
+  font-size: 0.95rem;
+  padding-bottom: 0.15rem;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
 }
 
 .site-nav a.active,
 .site-nav a:hover {
-  color: var(--accent);
+  color: var(--text);
+  border-bottom-color: var(--accent);
+}
+
+/* Hero */
+
+.hero {
+  padding: 3rem 0 2rem;
 }
 
 .hero h1 {
-  font-size: 2.25rem;
-  margin-bottom: 0.5rem;
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
 }
+
+.hero p {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  max-width: 42rem;
+}
+
+/* Buttons */
 
 .button {
   display: inline-block;
   background: var(--accent);
-  color: #fff;
-  padding: 0.6rem 1.2rem;
-  border-radius: 4px;
+  color: var(--accent-on);
+  font-weight: 600;
+  padding: 0.65rem 1.3rem;
+  border-radius: var(--radius);
   text-decoration: none;
   margin-top: 1rem;
+  transition: background 0.15s ease;
 }
+
+.button:hover {
+  background: var(--accent-strong);
+  color: var(--accent-on);
+}
+
+/* Project grid / cards */
 
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
   margin-top: 1.5rem;
 }
 
 .project-card {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-elevated);
   border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 1.25rem;
+  border-radius: var(--radius);
+  overflow: hidden;
   text-decoration: none;
   color: var(--text);
-  transition: border-color 0.15s ease;
+  transition: border-color 0.15s ease, transform 0.15s ease, background 0.15s ease;
 }
 
 .project-card:hover {
   border-color: var(--accent);
+  background: var(--bg-elevated-2);
+  transform: translateY(-2px);
+}
+
+.project-card-media {
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 30% 20%, var(--accent-soft), transparent 60%), var(--bg-elevated-2);
+  border-bottom: 1px solid var(--border);
+  color: var(--accent-strong);
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.project-card-body {
+  padding: 1.25rem;
 }
 
 .project-card h2 {
   margin: 0;
   font-size: 1.1rem;
+}
+
+.project-card p {
+  margin: 0.5rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.92rem;
 }
 
 .tech-stack {
@@ -114,6 +206,8 @@ body {
   color: var(--text-muted);
   margin-top: -0.5rem;
 }
+
+/* Resume */
 
 .resume-header {
   margin-bottom: 2rem;
@@ -178,12 +272,23 @@ body {
   padding: 2rem 1.5rem;
   color: var(--text-muted);
   font-size: 0.9rem;
+  border-top: 1px solid var(--border);
 }
 
 /* Used by the /resume/download route: Puppeteer prints the live /resume
-   page with the 'print' media type, so these rules produce the PDF output
-   without needing a separate PDF template. */
+   page with the 'print' media type. A resume is meant to be read on paper
+   or in a viewer with a plain white background regardless of the site's
+   dark theme, so print output forces the light palette back on. */
 @media print {
+  :root {
+    --bg: #ffffff;
+    --bg-elevated: #ffffff;
+    --text: #1a1a1a;
+    --text-muted: #555555;
+    --border: #e2e2e2;
+    --accent: #1f6b46;
+  }
+
   .site-header,
   .site-footer,
   .resume-header .button {
