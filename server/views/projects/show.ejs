@@ -22,6 +22,10 @@
       </div>
     <% } %>
 
+    <div class="project-description">
+      <p><%= project.description %></p>
+    </div>
+
     <% if (project.images.length) { %>
       <div class="project-gallery">
         <% project.images.forEach(function(src) { %>
@@ -30,9 +34,6 @@
       </div>
     <% } %>
 
-    <div class="project-description">
-      <p><%= project.description %></p>
-    </div>
     <% if (project.links && Object.keys(project.links).length) { %>
       <ul class="project-links">
         <% Object.entries(project.links).forEach(function([label, url]) { %>

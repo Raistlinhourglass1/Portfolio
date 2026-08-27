@@ -321,7 +321,14 @@ h1, h2, h3 {
   transition: border-color 0.15s ease, transform 0.15s ease, background 0.15s ease;
 }
 
-.project-card:hover {
+/* .reveal is also on .project-card for the scroll-reveal effect, and once
+   revealed, '.js .reveal.in' sets transform:translateY(0) at higher
+   specificity (3 classes) than a plain '.project-card:hover' (2 classes)
+   would have — silently cancelling the hover lift below. Matching that
+   specificity here (project-card + reveal + :hover = 3) and relying on
+   this rule coming later in the file wins the tie correctly; verified via
+   getComputedStyle that the lift actually applies now. */
+.project-card.reveal:hover {
   border-color: var(--accent);
   background: var(--bg-elevated-2);
   transform: translateY(-2px);
@@ -345,6 +352,11 @@ h1, h2, h3 {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.25s ease;
+}
+
+.project-card:hover .project-card-media img {
+  transform: scale(1.04);
 }
 
 /* Project detail page: video + screenshot gallery */
@@ -358,6 +370,16 @@ h1, h2, h3 {
   border-radius: var(--radius);
   border: 1px solid var(--border);
   background: #000;
+}
+
+.project-description {
+  margin-top: 1.5rem;
+  max-width: 42rem;
+}
+
+.project-description p {
+  font-size: 1.1rem;
+  color: var(--text-muted);
 }
 
 .project-gallery {
@@ -380,18 +402,20 @@ h1.has-logo {
    border highlights whichever image the cursor is over, matching the
    hover "select" feedback from a gallery the user pointed to as a
    reference. Sized larger than a typical thumbnail grid on purpose —
-   these are meant to actually be looked at, not act as index cliffnotes. */
+   these are meant to actually be looked at, not act as index cliffnotes.
+   No fixed aspect-ratio/object-fit:cover here on purpose — screenshots in
+   these galleries mix portrait and landscape shots, and force-cropping
+   them to a uniform box was cutting off parts of the image. Each image
+   keeps its natural proportions; rows just end up uneven heights, which
+   is normal for a mixed-content photo gallery. */
 .project-gallery img,
 .bts-gallery img {
+  display: block;
   width: 100%;
-  object-fit: cover;
+  height: auto;
   border-radius: var(--radius);
   border: 1px solid var(--border);
   transition: border-color 0.2s ease, transform 0.2s ease;
-}
-
-.project-gallery img {
-  aspect-ratio: 4 / 3;
 }
 
 .project-gallery img:hover,
@@ -536,9 +560,6 @@ h1.has-logo {
   background: #000;
 }
 
-.bts-gallery img {
-  aspect-ratio: 4 / 3;
-}
 
 .site-footer {
   position: relative;
