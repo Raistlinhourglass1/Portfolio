@@ -159,10 +159,9 @@ h1, h2, h3 {
 /* Hero */
 
 .hero {
-  min-height: 82vh;
   display: flex;
   align-items: center;
-  padding: 4rem 0;
+  padding: 3rem 0 2rem;
 }
 
 .hero .name {
@@ -196,7 +195,7 @@ h1, h2, h3 {
 /* Sections (home page) */
 
 .section {
-  padding: 5rem 0;
+  padding: 3.5rem 0;
   scroll-margin-top: 5.5rem;
 }
 
@@ -363,8 +362,8 @@ h1, h2, h3 {
 
 .project-gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 1rem;
   margin-top: 1.5rem;
 }
 
@@ -377,12 +376,28 @@ h1.has-logo {
   height: auto;
 }
 
-.project-gallery img {
+/* Gallery images (main project gallery + Behind the Scenes): a colored
+   border highlights whichever image the cursor is over, matching the
+   hover "select" feedback from a gallery the user pointed to as a
+   reference. Sized larger than a typical thumbnail grid on purpose —
+   these are meant to actually be looked at, not act as index cliffnotes. */
+.project-gallery img,
+.bts-gallery img {
   width: 100%;
-  aspect-ratio: 16 / 9;
   object-fit: cover;
   border-radius: var(--radius);
   border: 1px solid var(--border);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.project-gallery img {
+  aspect-ratio: 4 / 3;
+}
+
+.project-gallery img:hover,
+.bts-gallery img:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
 }
 
 .project-card-body {
