@@ -13,7 +13,7 @@ Personal portfolio website to showcase college projects and resume in one place.
   - Backend: **Node.js + Express**
   - Database: **SQLite** (file-based, no separate DB server process to manage; back up the `.sqlite` file to the DAS on a schedule)
   - Frontend: **Server-rendered views (EJS)** + vanilla CSS/JS — not React, to keep the frontend build simple. Design should lean on a lightweight CSS approach (e.g. Tailwind or Pico.css/Water.css) since the user's UI/design skills are a stated weak point — favor clean defaults, strong layout, and letting project screenshots/video carry visual interest over custom design work.
-  - Hosting: Self-hosted, reverse proxy via **Caddy** (auto-HTTPS, simpler config than nginx)
+  - Hosting: Self-hosted, reverse proxy via **Caddy** (auto-HTTPS, simpler config than nginx), Docker-based to match how the other two sites on that server already run — see `DEPLOY.md` for the Dockerfile/compose/Caddy setup and, importantly, how video files (gitignored) actually get onto the server
 - **Design philosophy**: limited color palette (1 accent + neutrals), borrow layout patterns from known-good portfolio sites, lean on large imagery/video from the projects (especially Esoterra and The Odyssey) rather than heavy custom UI design.
 - **Git/GitHub**: repo already created and cloned locally via GitHub Desktop. An initial scaffold (folder structure, `.gitignore`, `README.md`, `package.json`) was handed off as a zip and merged into the repo. Claude Code should now work directly in this cloned repo going forward.
 
