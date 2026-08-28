@@ -1,0 +1,8 @@
+<p class="tech-stack">
+  <% techStack.forEach(function(tech, i) { %>
+    <span class="tech-item">
+      <% var icon = getTechIcon(tech); %>
+      <% if (icon) { %><%- icon %><% } %><%= tech %>
+    </span><% if (i < techStack.length - 1) { %><span class="tech-sep">·</span><% } %>
+  <% }); %>
+</p>

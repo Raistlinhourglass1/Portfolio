@@ -2,14 +2,16 @@
    One accent color + neutrals per PROJECT_BRIEF.md — no secondary hues. */
 
 :root {
-  /* Surfaces */
-  --bg: #0d1310;             /* page background — near-black, slight green cast */
-  --bg-elevated: #141d19;    /* nav, footer, cards */
-  --bg-elevated-2: #1b2620;  /* hover state on elevated surfaces */
+  /* Surfaces — darker base + a bigger jump to elevated surfaces than before,
+     so cards/nav/footer read as distinctly "lifted" off the page instead of
+     blending into it. */
+  --bg: #070d0a;              /* page background — near-black, slight green cast */
+  --bg-elevated: #101f18;     /* nav, footer, cards */
+  --bg-elevated-2: #182b21;   /* hover state on elevated surfaces */
 
   /* Borders */
-  --border: #263029;
-  --border-strong: #34453b;
+  --border: #1e2b23;
+  --border-strong: #2f4436;
 
   /* Text */
   --text: #e9efe9;
@@ -382,6 +384,36 @@ h1, h2, h3 {
   color: var(--text-muted);
 }
 
+/* Dense, scannable feature bullets — short action-oriented phrases rather
+   than prose, so a visitor can absorb what the project actually does in a
+   few seconds. */
+.project-highlights {
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.project-highlights li {
+  position: relative;
+  padding-left: 1.15rem;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.project-highlights li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
 /* Masonry-style column layout, not a grid: mixed portrait/landscape
    images at natural aspect ratio in a row-based grid left uneven gaps
    whenever one image in a row was much shorter than its neighbor. Columns
@@ -446,8 +478,28 @@ h1.has-logo {
 }
 
 .tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
   color: var(--text-muted);
   font-size: 0.85rem;
+}
+
+.tech-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.tech-item svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.tech-sep {
+  color: var(--border-strong);
 }
 
 .project-role {

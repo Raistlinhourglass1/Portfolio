@@ -7,7 +7,8 @@ CREATE TABLE IF NOT EXISTS projects (
   slug         TEXT NOT NULL UNIQUE,       -- URL segment, e.g. "esoterra"
   title        TEXT NOT NULL,
   summary      TEXT,                       -- short blurb for card/grid view
-  description  TEXT,                       -- full case-study body (HTML or Markdown)
+  description  TEXT,                       -- 1-2 sentence intro, shown above the highlights list
+  highlights   TEXT DEFAULT '[]',          -- JSON array of short, dense feature bullets
   role         TEXT,                       -- e.g. "Team Lead", "Full-stack Developer"
   tech_stack   TEXT DEFAULT '[]',          -- JSON array of strings, e.g. ["Unreal Engine", "C++"]
   images       TEXT DEFAULT '[]',          -- JSON array of image paths/URLs

@@ -11,14 +11,17 @@ const projects = [
     title: 'Esoterra',
     summary: 'Flagship project: a team-led Unreal Engine RPG that placed 1st two semesters running.',
     description:
-      'Team lead across two semesters (Fall 2025 + Spring 2026) with two different 4-person teams. ' +
-      'Built in Unreal Engine with light use of pre-made assets, limited to the building-block ' +
-      'pieces used for the ruins, with everything else built custom. Placed 1st both semesters. ' +
-      'Features a deep combat system with multiple weapons and enemies, custom fighting animations, ' +
-      'an AI decision tree for reactive enemy behavior, NPCs with a dialogue and quest system, an ' +
-      'inventory system, crafting and resource gathering (rocks, trees), a custom weather particle ' +
-      'system, a magic system, and a large open-world island to explore. The narrative centers on ' +
-      'uncovering the fate of a long-dead civilization.',
+      'Team lead across two semesters (Fall 2025 + Spring 2026), two different 4-person teams, ' +
+      'placed 1st both semesters. Built in Unreal Engine with light use of pre-made assets, ' +
+      'limited to the ruins’ building-block pieces.',
+    highlights: [
+      'Deep combat system: multiple weapons, enemies, custom fighting animations',
+      'AI decision tree for reactive enemy behavior',
+      'NPCs with a dialogue and quest system',
+      'Inventory, crafting, and resource gathering (rocks, trees)',
+      'Custom weather particle system and a magic system',
+      'Large open-world island, narrative around a long-dead civilization',
+    ],
     role: 'Team Lead',
     tech_stack: ['Unreal Engine', 'C++', 'Blueprints'],
     images: [
@@ -58,11 +61,14 @@ const projects = [
     title: 'The Odyssey',
     summary: 'Team-led VR co-op escape room built in Unity, shipped to a web store.',
     description:
-      'Led a 4-person team, none of whom had prior game development experience, to build a VR ' +
-      'co-op escape room in Unity with no pre-made assets, fully custom code and level design. ' +
-      'Features an in-game lobby/multiplayer join flow and shipped as a real release posted to a ' +
-      'web store, not just a class demo. Custom puzzles require real physical player movement and ' +
-      '2-player cooperation, such as blacklight/flashlight puzzles that need coordinated input from both players.',
+      'Led a 4-person team, none of whom had prior game development experience, to build and ' +
+      'ship a VR co-op escape room in Unity.',
+    highlights: [
+      'Fully custom code and level design, no pre-made assets',
+      'In-game lobby / multiplayer join flow',
+      'Shipped as a real release on a web store, not just a class demo',
+      'Puzzles require real physical movement and 2-player cooperation (e.g. blacklight/flashlight)',
+    ],
     role: 'Team Lead',
     tech_stack: ['Unity', 'C#', 'VR'],
     images: [
@@ -86,13 +92,16 @@ const projects = [
     title: 'Library Management System',
     summary: 'Full-stack React + Node.js + MySQL library system with role-based access and barcode scanner input.',
     description:
-      'Built with a team of 4 for a Database class. Full-stack React + Node.js + MySQL application ' +
-      '("The Learning Loft") with staff/student role-based access and admin features for managing ' +
-      'books, audiobooks, ebooks, and periodicals. Supports physical barcode scanner input for ' +
-      'adding books, room and device reservations, and a custom JWT-based login system tied to a ' +
-      'self-hosted database (hosting was outsourced to AWS for this class project). The original ' +
-      'hosted deployment is no longer live; screenshots are from running the app locally against ' +
-      'the source in the linked repos.',
+      'Built with a team of 4 for a Database class: a full-stack library system ("The Learning ' +
+      'Loft"). The original hosted deployment is no longer live; screenshots are from running the ' +
+      'app locally against the source in the linked repos.',
+    highlights: [
+      'Staff/student role-based access and admin tools',
+      'Manages books, audiobooks, ebooks, and periodicals',
+      'Physical barcode scanner input for adding books',
+      'Room and device reservations',
+      'Custom JWT-based authentication',
+    ],
     role: 'Full-stack Developer',
     tech_stack: ['React', 'Node.js', 'MySQL', 'Express'],
     images: [
@@ -115,14 +124,15 @@ const projects = [
     summary: 'Comparing LSTM, GRU, and Random Forest models to forecast US oil and gas prices.',
     description:
       'Built for an AI class at the University of Houston, as part of a 4-person team comparing ' +
-      'different machine learning approaches to price forecasting. I built one of the project’s ' +
-      'LSTM models and contributed to data collection and research. The team trained and compared ' +
-      'LSTM, GRU, and Random Forest models using technical indicators (moving averages, RSI, ' +
-      'Bollinger Bands, MACD) derived from historical USOIL prices, plus a separate Random Forest ' +
-      'model predicting weekly Houston gas price changes from crude and regional market data. GRU ' +
-      'outperformed LSTM on this dataset (lower error), though both models struggled to anticipate ' +
-      'sudden price spikes driven by real-world events outside the dataset, such as wars and policy ' +
-      'shifts, a key finding of the project.',
+      'machine learning approaches to price forecasting. My contribution: one of the project’s ' +
+      'LSTM models, plus data collection and research.',
+    highlights: [
+      'Compared LSTM, GRU, and Random Forest models on historical USOIL prices',
+      'Technical indicators as features: moving averages, RSI, Bollinger Bands, MACD',
+      'Separate Random Forest model for weekly Houston gas price changes',
+      'GRU outperformed LSTM on this dataset (lower error)',
+      'Key finding: both models struggled with sudden price spikes driven by real-world events',
+    ],
     role: 'Contributor (LSTM Model)',
     tech_stack: ['Python', 'TensorFlow/Keras', 'scikit-learn', 'pandas'],
     images: [
@@ -139,12 +149,13 @@ const projects = [
 ];
 
 const upsert = db.prepare(`
-  INSERT INTO projects (slug, title, summary, description, role, tech_stack, images, video_url, bts_images, bts_videos, links, featured, sort_order, updated_at)
-  VALUES (@slug, @title, @summary, @description, @role, @tech_stack, @images, @video_url, @bts_images, @bts_videos, @links, @featured, @sort_order, datetime('now'))
+  INSERT INTO projects (slug, title, summary, description, highlights, role, tech_stack, images, video_url, bts_images, bts_videos, links, featured, sort_order, updated_at)
+  VALUES (@slug, @title, @summary, @description, @highlights, @role, @tech_stack, @images, @video_url, @bts_images, @bts_videos, @links, @featured, @sort_order, datetime('now'))
   ON CONFLICT(slug) DO UPDATE SET
     title = excluded.title,
     summary = excluded.summary,
     description = excluded.description,
+    highlights = excluded.highlights,
     role = excluded.role,
     tech_stack = excluded.tech_stack,
     images = excluded.images,
@@ -162,6 +173,7 @@ const seedAll = db.transaction((rows) => {
     upsert.run({
       ...p,
       tech_stack: JSON.stringify(p.tech_stack),
+      highlights: JSON.stringify(p.highlights || []),
       images: JSON.stringify(p.images),
       bts_images: JSON.stringify(p.bts_images || []),
       bts_videos: JSON.stringify(p.bts_videos || []),

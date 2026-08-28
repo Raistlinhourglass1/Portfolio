@@ -5,6 +5,7 @@ function parseRow(row) {
   return {
     ...row,
     tech_stack: JSON.parse(row.tech_stack || '[]'),
+    highlights: JSON.parse(row.highlights || '[]'),
     images: JSON.parse(row.images || '[]'),
     bts_images: JSON.parse(row.bts_images || '[]'),
     bts_videos: JSON.parse(row.bts_videos || '[]'),

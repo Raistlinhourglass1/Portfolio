@@ -12,7 +12,7 @@
               <p><%= project.summary %></p>
             <% } %>
             <% if (project.tech_stack.length) { %>
-              <p class="tech-stack"><%= project.tech_stack.join(' · ') %></p>
+              <%- include('tech-stack', { techStack: project.tech_stack }) %>
             <% } %>
           </div>
         </a>
