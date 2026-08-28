@@ -231,7 +231,24 @@ h1, h2, h3 {
 
 .about-content p {
   font-size: 1.1rem;
+  margin: 0 0 1.25rem;
+}
+
+.about-facts {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
   margin: 0 0 1.75rem;
+  padding: 0;
+}
+
+.about-facts li {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.3rem 0.85rem;
 }
 
 .contact-links {
@@ -507,10 +524,22 @@ h1.has-logo {
   margin-top: -0.5rem;
 }
 
-/* Resume */
+/* Resume — presented as a distinct "document" surface (elevated card) on
+   top of the page's ambient background, rather than plain text floating on
+   it, matching the elevated-card treatment used everywhere else on the site. */
+
+.resume {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2.5rem;
+  margin: 2rem auto 3rem;
+}
 
 .resume-header {
   margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-strong);
 }
 
 .resume-contact {
@@ -518,16 +547,27 @@ h1.has-logo {
 }
 
 .resume-section {
-  margin-bottom: 2rem;
+  margin-bottom: 2.25rem;
+}
+
+.resume-section:last-child {
+  margin-bottom: 0;
 }
 
 .resume-section h2 {
+  font-size: 1.3rem;
+  color: var(--accent-strong);
   border-bottom: 1px solid var(--border);
-  padding-bottom: 0.25rem;
+  padding-bottom: 0.5rem;
+  margin: 0 0 1.25rem;
 }
 
 .resume-entry {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.resume-entry:last-child {
+  margin-bottom: 0;
 }
 
 .resume-entry-heading,
@@ -543,18 +583,43 @@ h1.has-logo {
 }
 
 .resume-entry ul {
-  margin: 0.5rem 0 0;
-  padding-left: 1.25rem;
+  list-style: none;
+  margin: 0.65rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.resume-entry ul li {
+  position: relative;
+  padding-left: 1.1rem;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.resume-entry ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
 }
 
 .resume-skills {
   list-style: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .resume-skills li {
-  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
 }
 
 .contact-list {
@@ -661,6 +726,13 @@ h1.has-logo {
   .container {
     max-width: none;
     padding: 0;
+  }
+
+  .resume {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
   }
 
   .resume-entry {

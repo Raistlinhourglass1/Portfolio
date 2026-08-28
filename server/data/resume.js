@@ -68,14 +68,23 @@ module.exports = {
   // curated case-study content for the /projects pages.
   projects: [
     {
-      title: "Lead Developer, Ashlar's Abyss",
-      tech: 'C#, JavaScript, ShaderLab, HTML',
-      dates: 'April 2024',
+      title: 'Team Lead, Esoterra',
+      tech: 'Unreal Engine, C++, Blueprints',
+      dates: 'August 2025 – May 2026',
       bullets: [
-        'Collaborated with a team of four to design and develop a 3D game centered around exploring a labyrinth of old industrial technology',
-        'Created a demo map set within a cave environment, featuring personally modeled AI enemies with custom attack behaviors',
-        'Developed a combat system and a procedural animation system that was universally applied to all characters, enhancing fluidity and realism',
-        'Delivered a live presentation and gameplay demonstration to a crowd, resulting in winning the competition',
+        'Led two different 4-person teams across two semesters to build an open-world Unreal Engine RPG, placing 1st both semesters',
+        'Designed and implemented a combat system, an AI decision tree for enemy behavior, and a full NPC dialogue and quest system',
+        'Built inventory, crafting, and resource-gathering systems, plus a custom weather and magic system',
+      ],
+    },
+    {
+      title: 'Team Lead, The Odyssey',
+      tech: 'Unity, C#, VR',
+      dates: 'January 2026 – May 2026',
+      bullets: [
+        'Led a 4-person team with no prior game development experience to build and ship a VR co-op escape room to a web store',
+        'Designed physical-movement, 2-player cooperative puzzles requiring coordinated input from both players',
+        'Implemented fully custom code and level design, including an in-game lobby and multiplayer join flow',
       ],
     },
     {
