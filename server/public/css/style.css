@@ -529,7 +529,8 @@ h1.has-logo {
    it, matching the elevated-card treatment used everywhere else on the site. */
 
 .resume {
-  background: var(--bg-elevated);
+  background: rgba(16, 31, 24, 0.45);
+  backdrop-filter: blur(6px);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 2.5rem;
