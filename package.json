@@ -6,12 +6,16 @@
   "scripts": {
     "dev": "node --watch server/index.js",
     "start": "node server/index.js",
-    "db:seed": "node server/db/seed.js"
+    "db:seed": "node server/db/seed.js",
+    "resume:pdf": "node server/scripts/generate-resume-pdf.js"
   },
   "license": "MIT",
   "dependencies": {
     "better-sqlite3": "^12.11.1",
     "ejs": "^3.1.10",
     "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "puppeteer": "^24.43.1"
   }
 }
