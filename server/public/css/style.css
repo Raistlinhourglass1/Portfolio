@@ -522,7 +522,7 @@ p.tech-stack {
   flex-wrap: wrap;
   align-items: center;
   gap: 0.6rem;
-  color: var(--accent-warm-a);
+  color: var(--text-muted);
   font-size: 0.95rem;
 }
 
