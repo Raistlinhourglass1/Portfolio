@@ -1,5 +1,8 @@
-/* Design pass: dark theme, forest green accent, neutral grays.
-   One accent color + neutrals per PROJECT_BRIEF.md — no secondary hues. */
+/* Design pass: dark theme, forest green primary accent, neutral grays, plus
+   a warm amber/copper secondary accent (added later) used sparingly as a
+   gradient-text treatment on a handful of small "important" text pieces —
+   role labels, quick-fact chips — not a second solid color competing with
+   green everywhere. */
 
 :root {
   /* Surfaces — darker base + a bigger jump to elevated surfaces than before,
@@ -22,6 +25,12 @@
   --accent-strong: #4fd087;
   --accent-soft: rgba(52, 168, 101, 0.14);
   --accent-on: #06150d;      /* text color used on top of solid accent fills */
+
+  /* Secondary accent — warm amber/copper, used only for the gradient-text
+     .accent-warm treatment below, never as a solid fill competing with green. */
+  --accent-warm-a: #ffc27a;
+  --accent-warm-b: #e2662c;
+  --accent-warm-border: rgba(226, 102, 44, 0.35);
 
   --max-width: 1080px;
   --radius: 8px;
@@ -174,7 +183,6 @@ h1, h2, h3 {
 
 .hero .role-line {
   font-size: 1.25rem;
-  color: var(--accent-strong);
   margin: 0 0 1.25rem;
 }
 
@@ -244,11 +252,21 @@ h1, h2, h3 {
 }
 
 .about-facts li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
   font-size: 0.8rem;
   color: var(--text-muted);
-  border: 1px solid var(--border);
+  border: 1px solid var(--accent-warm-border);
   border-radius: 999px;
   padding: 0.3rem 0.85rem;
+}
+
+.uh-logo {
+  height: 18px;
+  width: auto;
+  vertical-align: middle;
+  margin-right: 0.4rem;
 }
 
 .contact-links {
@@ -623,6 +641,15 @@ h1.has-logo {
   font-size: 0.95rem;
 }
 
+.skills-category {
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.resume-skills .tech-stack {
+  margin: 0;
+}
+
 .contact-list {
   list-style: none;
   padding: 0;
@@ -694,6 +721,23 @@ h1.has-logo {
   color: var(--text-muted);
   font-size: 0.9rem;
   border-top: 1px solid var(--border);
+}
+
+/* Warm secondary-accent gradient text, for the small handful of "important"
+   text pieces called out on purpose — not a general-purpose color, applied
+   deliberately via this class rather than baked into a component's base
+   style. -webkit-text-fill-color:transparent needs a solid `color` fallback
+   for browsers without background-clip:text support. Defined this late in
+   the file on purpose: it's a single-class selector like most component
+   rules above it (e.g. .project-role), and needs to win that specificity
+   tie via source order since it's meant to always override wherever it's
+   deliberately applied. */
+.accent-warm {
+  color: var(--accent-warm-b);
+  background: linear-gradient(135deg, var(--accent-warm-a), var(--accent-warm-b));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* Not used by /resume/download (that route serves a pre-made static PDF) —

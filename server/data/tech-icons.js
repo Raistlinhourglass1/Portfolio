@@ -21,6 +21,24 @@ const SLUG_BY_TECH = {
   'TensorFlow/Keras': 'tensorflow',
   'scikit-learn': 'scikitlearn',
   pandas: 'pandas',
+
+  // Resume "Technical Skills" section — no real logo for "VS Code",
+  // "Visual Studio", "SQL (Postgres)", or "Matplotlib" in simple-icons, so
+  // those intentionally fall back to text-only rather than a placeholder.
+  Java: 'openjdk',
+  'C/C++': 'cplusplus',
+  JavaScript: 'javascript',
+  'HTML/CSS': 'html5',
+  R: 'r',
+  Flask: 'flask',
+  JUnit: 'junit5',
+  WordPress: 'wordpress',
+  'Material-UI': 'mui',
+  FastAPI: 'fastapi',
+  Git: 'git',
+  Docker: 'docker',
+  Eclipse: 'eclipseide',
+  NumPy: 'numpy',
 };
 
 const cache = {};

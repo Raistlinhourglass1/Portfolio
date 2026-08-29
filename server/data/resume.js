@@ -14,6 +14,7 @@ module.exports = {
   education: [
     {
       school: 'University of Houston',
+      logo: '/images/logos/uh-wordmark.svg',
       location: 'Houston, TX',
       degree: 'Bachelor of Science in Computer Science, Minor in Cybersecurity',
       dates: 'December 2024 – December 2026',

@@ -17,7 +17,9 @@
       <% resume.education.forEach(function(edu) { %>
         <div class="resume-entry">
           <div class="resume-entry-heading">
-            <strong><%= edu.school %></strong>
+            <strong>
+              <% if (edu.logo) { %><img class="uh-logo" src="<%= edu.logo %>" alt=""><% } %><%= edu.school %>
+            </strong>
             <span class="resume-entry-location"><%= edu.location %></span>
           </div>
           <div class="resume-entry-subheading">
@@ -73,7 +75,10 @@
       <h2>Technical Skills</h2>
       <ul class="resume-skills">
         <% Object.entries(resume.skills).forEach(function([category, items]) { %>
-          <li><strong><%= category %>:</strong> <%= items.join(', ') %></li>
+          <li>
+            <strong class="skills-category"><%= category %></strong>
+            <%- include('partials/tech-stack', { techStack: items }) %>
+          </li>
         <% }); %>
       </ul>
     </section>

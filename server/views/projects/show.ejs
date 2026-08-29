@@ -10,7 +10,7 @@
       <% } %>
     </h1>
     <% if (project.role) { %>
-      <p class="project-role"><%= project.role %></p>
+      <p class="project-role accent-warm"><%= project.role %></p>
     <% } %>
     <% if (project.tech_stack.length) { %>
       <%- include('../partials/tech-stack', { techStack: project.tech_stack }) %>
