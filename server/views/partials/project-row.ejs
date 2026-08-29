@@ -1,0 +1,15 @@
+<li class="project-row reveal">
+  <a href="/projects/<%= project.slug %>">
+    <div class="project-row-highlight" aria-hidden="true"></div>
+    <div class="project-row-content">
+      <h3><%= project.title %></h3>
+      <% if (project.summary) { %>
+        <p class="project-row-summary"><%= project.summary %></p>
+      <% } %>
+      <% if (project.tech_stack.length) { %>
+        <%- include('tech-stack', { techStack: project.tech_stack }) %>
+      <% } %>
+    </div>
+    <span class="project-row-arrow" aria-hidden="true">&rarr;</span>
+  </a>
+</li>

@@ -337,7 +337,110 @@ h1, h2, h3 {
   color: var(--accent-on);
 }
 
-/* Project grid / cards */
+/* Project list (home page) — a text-first row list instead of an image
+   grid: title, one-line summary, tech tags, no thumbnail. Each row still
+   links to the same project detail page (which keeps its full gallery/
+   video) — only the home page listing dropped the images, per feedback
+   that the grid-of-screenshots felt cluttered on first load. The
+   standalone /projects fallback page is untouched and still uses the
+   image-grid .project-card partial below. */
+
+.project-list {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+}
+
+.project-row {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+/* Hovering the list dims every row to 50%; the specific row under the
+   cursor gets its own :hover rule back to full opacity. Written as one
+   combined selector (list:hover + row:hover) rather than two separate
+   same-specificity rules, so it can't lose a cascade tie the way a couple
+   of rules earlier this session did. */
+.project-list:hover .project-row {
+  opacity: 0.5;
+}
+
+.project-list:hover .project-row:hover {
+  opacity: 1;
+}
+
+.project-row a {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 1.25rem;
+  text-decoration: none;
+  color: var(--text);
+  border-radius: var(--radius);
+}
+
+.project-row-highlight {
+  position: absolute;
+  inset: -2px -1rem;
+  z-index: -1;
+  border-radius: var(--radius);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.project-row a:hover .project-row-highlight,
+.project-row a:focus-visible .project-row-highlight {
+  opacity: 1;
+}
+
+.project-row-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.project-row-content h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.3rem;
+}
+
+.project-row-summary {
+  margin: 0 0 0.6rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  max-width: 42rem;
+}
+
+.project-row-arrow {
+  flex-shrink: 0;
+  font-size: 1.4rem;
+  color: var(--text-muted);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.2s ease, transform 0.2s ease, color 0.2s ease;
+}
+
+.project-row a:hover .project-row-arrow,
+.project-row a:focus-visible .project-row-arrow {
+  opacity: 1;
+  transform: translateX(0);
+  color: var(--accent-strong);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-row,
+  .project-row-highlight,
+  .project-row-arrow {
+    transition: none;
+  }
+}
+
+/* Project grid / cards — still used by the standalone /projects fallback
+   page (see the comment above .project-list). */
 
 .project-grid {
   display: grid;

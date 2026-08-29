@@ -54,11 +54,11 @@
           <h2>Projects</h2>
           <span class="count"><%= projects.length %> project<%= projects.length === 1 ? '' : 's' %></span>
         </div>
-        <div class="project-grid">
+        <ul class="project-list">
           <% projects.forEach(function(project) { %>
-            <%- include('partials/project-card', { project }) %>
+            <%- include('partials/project-row', { project }) %>
           <% }); %>
-        </div>
+        </ul>
       </div>
     </section>
   </main>
