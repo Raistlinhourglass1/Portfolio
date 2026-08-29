@@ -512,12 +512,17 @@ h1.has-logo {
   font-size: 0.92rem;
 }
 
-.tech-stack {
+/* Selector is `p.tech-stack` (element+class), not just `.tech-stack`, on
+   purpose: this element is a <p> inside .project-card, and
+   `.project-card p` (also element+class specificity) sets its own color —
+   without matching that specificity, the more specific-by-source-order
+   rule silently wins regardless of which one looks like it should apply. */
+p.tech-stack {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.6rem;
-  color: var(--text-muted);
+  color: var(--accent-warm-a);
   font-size: 0.95rem;
 }
 
