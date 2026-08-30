@@ -5,7 +5,7 @@ const indexRouter = require('./routes/index');
 const projectsRouter = require('./routes/projects');
 const resumeRouter = require('./routes/resume');
 const aboutRouter = require('./routes/about');
-const { getTechIcon } = require('./data/tech-icons');
+const { getTechIcon, getIconBySlug } = require('./data/tech-icons');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,6 +16,7 @@ app.set('view engine', 'ejs');
 
 // Available in every view without each route passing it explicitly.
 app.locals.getTechIcon = getTechIcon;
+app.locals.getIconBySlug = getIconBySlug;
 
 // Static assets
 app.use(express.static(path.join(__dirname, 'public')));

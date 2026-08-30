@@ -37,10 +37,10 @@
             <li>2× 1st place team lead</li>
           </ul>
           <div class="contact-links">
-            <a href="mailto:<%= contact.email %>">Email →</a>
-            <a href="<%= contact.github.url %>" target="_blank" rel="noopener">GitHub →</a>
-            <a href="<%= contact.linkedin.url %>" target="_blank" rel="noopener">LinkedIn →</a>
-            <a href="/resume">Resume →</a>
+            <a href="mailto:<%= contact.email %>"><%- getIconBySlug('mail') %>Email</a>
+            <a href="<%= contact.github.url %>" target="_blank" rel="noopener"><%- getIconBySlug('github') %>GitHub</a>
+            <a href="<%= contact.linkedin.url %>" target="_blank" rel="noopener"><%- getIconBySlug('linkedin') %>LinkedIn</a>
+            <a href="/resume"><%- getIconBySlug('file-doc') %>Resume</a>
           </div>
         </div>
       </div>

@@ -1,6 +1,13 @@
 <li class="project-row reveal">
   <a href="/projects/<%= project.slug %>">
     <div class="project-row-highlight" aria-hidden="true"></div>
+    <div class="project-row-thumb">
+      <% if (project.images.length) { %>
+        <img src="<%= project.images[0] %>" alt="" loading="lazy">
+      <% } else { %>
+        <%= project.title.charAt(0) %>
+      <% } %>
+    </div>
     <div class="project-row-content">
       <h3><%= project.title %></h3>
       <% if (project.summary) { %>
