@@ -351,24 +351,6 @@ h1, h2, h3 {
   padding: 0;
 }
 
-.project-row {
-  opacity: 1;
-  transition: opacity 0.3s ease;
-}
-
-/* Hovering the list dims every row to 50%; the specific row under the
-   cursor gets its own :hover rule back to full opacity. Written as one
-   combined selector (list:hover + row:hover) rather than two separate
-   same-specificity rules, so it can't lose a cascade tie the way a couple
-   of rules earlier this session did. */
-.project-list:hover .project-row {
-  opacity: 0.5;
-}
-
-.project-list:hover .project-row:hover {
-  opacity: 1;
-}
-
 .project-row a {
   position: relative;
   z-index: 1;
@@ -379,6 +361,14 @@ h1, h2, h3 {
   text-decoration: none;
   color: var(--text);
   border-radius: var(--radius);
+  transition: transform 0.2s ease;
+}
+
+/* "Selection" nudge instead of dimming siblings: the hovered row itself
+   shifts right slightly, paired with the arrow's own slide-in below. */
+.project-row a:hover,
+.project-row a:focus-visible {
+  transform: translateX(8px);
 }
 
 .project-row-highlight {
@@ -432,7 +422,7 @@ h1, h2, h3 {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .project-row,
+  .project-row a,
   .project-row-highlight,
   .project-row-arrow {
     transition: none;
