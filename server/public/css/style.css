@@ -287,24 +287,28 @@ h1, h2, h3 {
   font-weight: 600;
   letter-spacing: 0.02em;
   text-decoration: none;
-  color: var(--accent-strong);
+  color: var(--accent-warm-a);
   border: 1px solid var(--accent-warm-border);
   border-radius: 999px;
   padding: 0.55rem 1.1rem;
   transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
+/* Icon stays green regardless of the label text's color (set on the parent
+   <a>, which the icon would otherwise inherit via fill="currentColor") —
+   same green-logo/orange-label split as the project tech-stack tags. */
 .contact-links a svg {
   width: 18px;
   height: 18px;
   flex-shrink: 0;
+  color: var(--accent-strong);
 }
 
 .contact-links a:hover,
 .contact-links a:focus-visible {
-  background: rgba(79, 208, 135, 0.14);
+  background: rgba(226, 102, 44, 0.14);
   border-color: var(--accent-warm-a);
-  color: var(--accent-strong);
+  color: var(--accent-warm-a);
 }
 
 /* Scroll-reveal: sections fade/lift into place as they enter the viewport
