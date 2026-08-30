@@ -287,7 +287,9 @@ h1, h2, h3 {
   font-weight: 600;
   letter-spacing: 0.02em;
   text-decoration: none;
-  color: var(--accent-warm-a);
+  /* Same muted grey as the About section's quick-fact chips (.about-facts
+     li) — matched deliberately per feedback, not just "a" muted tone. */
+  color: var(--text-muted);
   border: 1px solid var(--accent-warm-border);
   border-radius: 999px;
   padding: 0.55rem 1.1rem;
@@ -308,7 +310,7 @@ h1, h2, h3 {
 .contact-links a:focus-visible {
   background: rgba(226, 102, 44, 0.14);
   border-color: var(--accent-warm-a);
-  color: var(--accent-warm-a);
+  color: var(--text);
 }
 
 /* Scroll-reveal: sections fade/lift into place as they enter the viewport
