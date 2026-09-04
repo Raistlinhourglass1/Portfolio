@@ -1,0 +1,250 @@
+<%
+  // Local helpers for this template only.
+  const fmt = (n) => Number(n || 0).toLocaleString('en-US');
+  const pct = (n, max) => (max > 0 ? Math.round((n / max) * 100) : 0);
+  const shortDate = (t) => (t ? String(t).replace('T', ' ').slice(0, 16) : '—');
+  const maxPageVisits = stats.pages.reduce((m, p) => Math.max(m, p.visits), 0);
+  const maxDayVisits = stats.perDay.reduce((m, d) => Math.max(m, d.visits), 0);
+  const qs = (overrides) => {
+    const params = { days: stats.days, bots: stats.includeBots ? 1 : 0, ...overrides };
+    return '?days=' + params.days + '&bots=' + params.bots;
+  };
+%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title><%= title %> · Admin</title>
+  <style>
+    :root {
+      --bg: #0f1512; --panel: #161d19; --border: #26302a;
+      --text: #dfe7e2; --dim: #8fa197;
+      --accent: #57b98a; --orange: #e08a4c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      padding: 2rem 1.5rem 4rem;
+    }
+    .wrap { max-width: 1000px; margin: 0 auto; }
+    h1 { font-size: 1.4rem; margin: 0 0 .25rem; }
+    h2 { font-size: 1rem; margin: 2.25rem 0 .75rem; color: var(--dim);
+         text-transform: uppercase; letter-spacing: .06em; font-weight: 600; }
+    a { color: var(--accent); }
+    .sub { color: var(--dim); margin: 0 0 1.5rem; font-size: .85rem; }
+    .controls { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-bottom: .5rem;
+                font-size: .85rem; }
+    .controls span { color: var(--dim); }
+    .controls a { margin-right: .5rem; }
+    .controls a.on { color: var(--orange); font-weight: 600; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+             gap: .75rem; margin-bottom: .5rem; }
+    .card { background: var(--panel); border: 1px solid var(--border);
+            border-radius: 8px; padding: .9rem 1rem; }
+    .card .n { font-size: 1.55rem; font-weight: 700; }
+    .card .l { color: var(--dim); font-size: .78rem; margin-top: .15rem; }
+    table { width: 100%; border-collapse: collapse; background: var(--panel);
+            border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+    th, td { text-align: left; padding: .5rem .75rem; border-bottom: 1px solid var(--border); }
+    th { color: var(--dim); font-weight: 600; font-size: .78rem;
+         text-transform: uppercase; letter-spacing: .04em; }
+    tr:last-child td { border-bottom: none; }
+    td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+    .bar-row td { position: relative; }
+    .bar { position: relative; height: 100%; }
+    .bar .fill { position: absolute; inset: 0 auto 0 0; background: rgba(87,185,138,.16);
+                 border-radius: 3px; z-index: 0; }
+    .bar .label, .bar .val { position: relative; z-index: 1; }
+    .bar .val { float: right; color: var(--dim); font-variant-numeric: tabular-nums; }
+    .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+    .chart { background: var(--panel); border: 1px solid var(--border);
+             border-radius: 8px; padding: .75rem .85rem .5rem; }
+    .day-chart { display: flex; align-items: flex-end; gap: 2px; height: 120px;
+                 border-bottom: 1px solid var(--border); overflow-x: auto; }
+    .day-chart .d { flex: 1 1 0; min-width: 2px; background: var(--accent);
+                    border-radius: 2px 2px 0 0; min-height: 3px; opacity: .85; }
+    .day-chart .d:hover { opacity: 1; }
+    .day-chart .d.zero { background: var(--border); min-height: 3px; }
+    .day-axis { display: flex; justify-content: space-between; gap: 1rem;
+                padding-top: .4rem; font-size: .72rem; color: var(--dim);
+                font-variant-numeric: tabular-nums; }
+    .day-axis .peak { color: var(--accent); }
+    .muted { color: var(--dim); }
+    .bot { color: var(--orange); }
+    code { background: #0b0f0d; padding: .1rem .35rem; border-radius: 4px; font-size: .85em; }
+    .empty { color: var(--dim); padding: 1rem; background: var(--panel);
+             border: 1px solid var(--border); border-radius: 8px; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Visit stats</h1>
+  <p class="sub">
+    Logging since <%= shortDate(stats.firstVisit) %> ·
+    <%= stats.includeBots ? 'including bots' : 'bots excluded' %> ·
+    trends over last <%= stats.days %> days
+  </p>
+
+  <div class="controls">
+    <span>Bots:</span>
+    <a class="<%= !stats.includeBots ? 'on' : '' %>" href="<%= qs({ bots: 0 }) %>">exclude</a>
+    <a class="<%= stats.includeBots ? 'on' : '' %>" href="<%= qs({ bots: 1 }) %>">include</a>
+    <span style="margin-left:1rem">Range:</span>
+    <% [7, 30, 90, 365].forEach(function (d) { %>
+      <a class="<%= stats.days === d ? 'on' : '' %>" href="<%= qs({ days: d }) %>"><%= d %>d</a>
+    <% }); %>
+  </div>
+
+  <h2>Totals</h2>
+  <div class="cards">
+    <div class="card"><div class="n"><%= fmt(stats.totals.visits) %></div><div class="l">page views (all time)</div></div>
+    <div class="card"><div class="n"><%= fmt(stats.totals.visitors) %></div><div class="l">unique visitors (all time)</div></div>
+    <div class="card"><div class="n"><%= fmt(stats.recent.visits) %></div><div class="l">views · last <%= stats.days %>d</div></div>
+    <div class="card"><div class="n"><%= fmt(stats.recent.visitors) %></div><div class="l">visitors · last <%= stats.days %>d</div></div>
+    <div class="card"><div class="n bot"><%= fmt(stats.botCount) %></div><div class="l">bot hits (logged, filtered out)</div></div>
+  </div>
+
+  <% var peakDay = stats.perDay.reduce(function (a, b) { return b.visits > a.visits ? b : a; }, { visits: 0, day: '' }); %>
+  <h2>Views per day · last <%= stats.days %> days</h2>
+  <% if (maxDayVisits > 0) { %>
+    <div class="chart">
+      <div class="day-chart">
+        <% stats.perDay.forEach(function (d) { %>
+          <div class="d<%= d.visits === 0 ? ' zero' : '' %>"
+               style="height: <%= d.visits ? Math.max(pct(d.visits, maxDayVisits), 5) : 0 %>%"
+               title="<%= d.day %> — <%= fmt(d.visits) %> views, <%= fmt(d.visitors) %> visitors"></div>
+        <% }); %>
+      </div>
+      <div class="day-axis">
+        <span><%= stats.perDay[0].day %></span>
+        <span class="peak">peak <%= fmt(peakDay.visits) %> on <%= peakDay.day %></span>
+        <span><%= stats.perDay[stats.perDay.length - 1].day %> (today)</span>
+      </div>
+    </div>
+  <% } else { %>
+    <div class="empty">No visits in the last <%= stats.days %> days yet.</div>
+  <% } %>
+
+  <h2>Pages — most to least viewed</h2>
+  <% if (stats.pages.length) { %>
+    <table>
+      <thead><tr><th>Path</th><th class="num">Views</th><th class="num">Visitors</th><th class="num">Last view</th></tr></thead>
+      <tbody>
+        <% stats.pages.forEach(function (p) { %>
+          <tr class="bar-row">
+            <td>
+              <div class="bar">
+                <div class="fill" style="width: <%= pct(p.visits, maxPageVisits) %>%"></div>
+                <span class="label"><%= p.path %></span>
+              </div>
+            </td>
+            <td class="num"><%= fmt(p.visits) %></td>
+            <td class="num"><%= fmt(p.visitors) %></td>
+            <td class="num muted"><%= shortDate(p.last_visit) %></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <div class="empty">No page views logged yet.</div>
+  <% } %>
+
+  <div class="cols">
+    <div>
+      <h2>Top referrers</h2>
+      <% if (stats.referrers.length) { %>
+        <table>
+          <thead><tr><th>Source</th><th class="num">Views</th></tr></thead>
+          <tbody>
+            <% stats.referrers.forEach(function (r) { %>
+              <tr><td><%= r.host %></td><td class="num"><%= fmt(r.visits) %></td></tr>
+            <% }); %>
+          </tbody>
+        </table>
+      <% } else { %><div class="empty">Nothing yet.</div><% } %>
+    </div>
+    <div>
+      <h2>Top countries</h2>
+      <% if (stats.countries.length) { %>
+        <table>
+          <thead><tr><th>Country</th><th class="num">Views</th><th class="num">Visitors</th></tr></thead>
+          <tbody>
+            <% stats.countries.forEach(function (c) { %>
+              <tr><td><%= c.country %></td><td class="num"><%= fmt(c.visits) %></td><td class="num"><%= fmt(c.visitors) %></td></tr>
+            <% }); %>
+          </tbody>
+        </table>
+      <% } else { %><div class="empty">Nothing yet.</div><% } %>
+    </div>
+  </div>
+
+  <div class="cols">
+    <div>
+      <h2>Browsers</h2>
+      <% if (stats.browsers.length) { %>
+        <table>
+          <tbody>
+            <% stats.browsers.forEach(function (b) { %>
+              <tr><td><%= b.name %></td><td class="num"><%= fmt(b.visits) %></td></tr>
+            <% }); %>
+          </tbody>
+        </table>
+      <% } else { %><div class="empty">Nothing yet.</div><% } %>
+    </div>
+    <div>
+      <h2>Operating systems</h2>
+      <% if (stats.systems.length) { %>
+        <table>
+          <tbody>
+            <% stats.systems.forEach(function (s) { %>
+              <tr><td><%= s.name %></td><td class="num"><%= fmt(s.visits) %></td></tr>
+            <% }); %>
+          </tbody>
+        </table>
+      <% } else { %><div class="empty">Nothing yet.</div><% } %>
+    </div>
+  </div>
+
+  <h2>Device types</h2>
+  <% if (stats.devices.length) { %>
+    <table>
+      <tbody>
+        <% stats.devices.forEach(function (d) { %>
+          <tr><td><%= d.name %></td><td class="num"><%= fmt(d.visits) %></td></tr>
+        <% }); %>
+      </tbody>
+    </table>
+  <% } else { %><div class="empty">Nothing yet.</div><% } %>
+
+  <h2>Recent visits (last 100, bots included)</h2>
+  <% if (stats.recentVisits.length) { %>
+    <table>
+      <thead><tr><th>When (UTC)</th><th>Path</th><th class="num">Status</th><th>Location</th><th>Client</th><th>Referrer</th></tr></thead>
+      <tbody>
+        <% stats.recentVisits.forEach(function (v) { %>
+          <tr>
+            <td class="muted"><%= shortDate(v.visited_at) %></td>
+            <td><%= v.path %><% if (v.is_bot) { %> <span class="bot">· bot</span><% } %></td>
+            <td class="num muted"><%= v.status || '' %></td>
+            <td class="muted"><%= [v.city, v.country].filter(Boolean).join(', ') || '—' %></td>
+            <td class="muted"><%= [v.browser, v.os, v.device].filter(Boolean).join(' / ') || '—' %></td>
+            <td class="muted"><%= v.referrer_host %></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <div class="empty">No visits logged yet.</div>
+  <% } %>
+
+  <p class="sub" style="margin-top:2rem">
+    Raw data: <code>page_visits</code> table in the analytics SQLite file
+    (<code>ANALYTICS_DB_PATH</code>). No raw IP addresses are stored.
+  </p>
+</div>
+</body>
+</html>

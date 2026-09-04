@@ -12,6 +12,10 @@ node_modules/
 *.sqlite-shm
 *.sqlite-wal
 
+# Auto-generated secret used to salt visitor-IP hashes (server/db/analytics.js).
+# Lives with the analytics DB on its volume in prod; must never be committed.
+analytics-salt
+
 # Logs
 logs/
 *.log
